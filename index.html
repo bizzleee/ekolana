@@ -219,15 +219,7 @@
     <body>
         <h3>Ekolana - Registro Ekousuario</h3>
         <hr>
-        <!-- action="procesar_formulario.php" -->
-        <?php if(isset($mensaje) && $mensaje !== ""): ?>
-            <p class="formulario_mensaje_exito_activo" id="formulario_mensaje_exito_activo"><?php echo $mensaje; ?></p>
-        <?php elseif(!empty($errors)): ?>
-            <div class="formulario_mensaje_activo" id="formulario_mensaje_activo">
-                    <p><b>Error:</b> Por favor llena el formulario correctamente.</p>
-                    <p><?php echo $errors['correo']; ?></p>
-            </div>
-        <?php endif; ?>
+
         <form class="formulario" id="formulario"  method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <!-- Campo nombre -->
             <div class="campo" id="campo_nombre">
@@ -288,20 +280,6 @@
                 <div class="campo-texto">
                     <select class="form_select" id="colonia" name="colonia">
                         <option value="0">SELECCIONE UNA COLONIA</option>
-                        <?php
-                            if ($result_colonias->num_rows > 0) {
-                                while($row = $result_colonias->fetch_assoc()) {
-                                    $selected = ($row['colonia_cp'] == $colonia) ? "selected" : "";
-                                    echo "<option value='".$row['colonia_cp']."' data-cp='".$row['cp_codigo_postal']."' data-estado='".$row['estado_cp']."' data-alcaldia='".$row['alcaldia_municipio_cp']."' $selected>".$row['colonia_cp']."</option>";
-                                }
-                            } else {
-                                echo "<option value=''>No hay colonias disponibles</option>";
-                            }
-                        ?>
-                    </select>
-                        <?php if(isset($errors['colonia'])): ?>
-                        <span class="error-msg"><?php echo $errors['colonia']; ?></span>
-                        <?php endif; ?>
                 </div>
                 <p class="formulario_input_error">Debe seleccionar una de las opciones</p>
             </div>
